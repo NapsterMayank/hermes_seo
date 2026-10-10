@@ -1,0 +1,95 @@
+project:
+  name: ""
+  website: ""
+  primary_language: "en"
+  target_markets: []
+  primary_audience: ""
+  products_or_services: []
+  primary_conversion: ""
+
+brand:
+  positioning: ""
+  voice: "clear, useful, evidence-led"
+  approved_claims: []
+  prohibited_claims: []
+  authors: []
+
+content:
+  cms: "draft-only"
+  existing_inventory: "seo/data/content-inventory.csv"
+  priority_topics: []
+  competitors: []
+  required_sources: []
+  human_review_required: true
+  publish_automatically: false
+
+outreach:
+  mailbox: ""
+  sender_name: ""
+  allowed_tactics:
+    - original research and data
+    - useful tools and assets
+    - relevant resource pages
+    - broken-link replacements
+    - unlinked brand mentions
+    - expert contributions
+    - legitimate partner listings
+  prohibited_tactics:
+    - bulk account creation
+    - comment or forum spam
+    - automated profile links
+    - paid dofollow links
+    - undisclosed link exchanges
+    - fake reviews or identities
+  max_follow_ups: 1
+  send_requires_approval: true
+
+prospecting:
+  target_unique_domains: 500
+  discovery_batch_size: 25
+  browser_batch_size: 10
+  minimum_quality_score: 65
+  one_opportunity_per_domain: true
+  require_public_submission_policy: true
+  allowed_opportunity_types:
+    - resource page
+    - editorial guest contribution
+    - expert contribution
+    - business or partner directory
+    - community profile with genuine participation
+    - unlinked brand mention
+    - broken-link replacement
+  reject_if:
+    - link exists only for SEO manipulation
+    - site is unrelated to the business
+    - page is dominated by spam or scraped content
+    - paid dofollow link is required
+    - misleading identity or undisclosed promotion is required
+
+automation:
+  source_of_truth: "seo/data/backlink-prospects.csv"
+  browser_queue: "seo/data/browser-task-queue.csv"
+  activity_log: "seo/data/campaign-activity.csv"
+  review_workbook: "seo/reports/backlink-review.xlsx"
+  resume_after_each_site: true
+  account_creation_requires_approval: true
+  submission_requires_approval: true
+  daily_account_cap: 10
+  daily_submission_cap: 10
+  unattended_external_writes: false
+
+measurement:
+  search_console_connected: false
+  ga4_connected: false
+  bing_webmaster_connected: false
+  backlink_provider: ""
+  reporting_timezone: "Asia/Kolkata"
+  baseline_date: ""
+
+approvals:
+  create_account: required
+  accept_terms: required
+  solve_captcha_or_otp: human-only
+  publish_content: required
+  send_outreach: required
+  purchase_or_subscription: required

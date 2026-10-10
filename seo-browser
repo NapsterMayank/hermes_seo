@@ -1,0 +1,38 @@
+#!/bin/sh
+set -eu
+
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+browser_app="/Applications/Brave Browser.app"
+browser_bin="$browser_app/Contents/MacOS/Brave Browser"
+profile_dir="$script_dir/browser-profile"
+debug_url="http://127.0.0.1:9222/json/version"
+
+if curl -fsS "$debug_url" >/dev/null 2>&1; then
+  exit 0
+fi
+
+if [ ! -x "$browser_bin" ]; then
+  echo "Brave Browser is not installed at the expected macOS path." >&2
+  exit 1
+fi
+
+mkdir -p "$profile_dir"
+open -na "$browser_app" --args \
+  --remote-debugging-address=127.0.0.1 \
+  --remote-debugging-port=9222 \
+  --user-data-dir="$profile_dir" \
+  --no-first-run \
+  --no-default-browser-check
+
+attempt=0
+while [ "$attempt" -lt 200 ]; do
+  if curl -fsS "$debug_url" >/dev/null 2>&1; then
+    echo "Hermes browser ready: visible Brave window with a dedicated persistent profile."
+    exit 0
+  fi
+  attempt=$((attempt + 1))
+  sleep 0.1
+done
+
+echo "Brave started but its automation endpoint did not become ready." >&2
+exit 1

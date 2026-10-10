@@ -1,0 +1,17 @@
+#!/bin/sh
+set -eu
+
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+
+"$script_dir/seo-browser"
+export BROWSER_CDP_URL="http://127.0.0.1:9222"
+
+status=0
+/Users/mayanksharma/.local/bin/hermes \
+  --in "$script_dir" \
+  --toolsets browser,web,file \
+  --skills seo-geo-operator \
+  "$@" || status=$?
+
+"$script_dir/seo-campaign" sync
+exit "$status"

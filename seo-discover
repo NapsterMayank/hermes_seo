@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+exec "$script_dir/seo-agent" -z \
+  "Read seo/prompts/discover-500.md completely and follow it exactly. Process one discovery batch of 25 unique domains, save every result to the source CSV, then stop cleanly."

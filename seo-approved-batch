@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+exec "$script_dir/seo-agent" -z \
+  "Read seo/prompts/process-approved-batch.md completely and follow it exactly. Process at most 10 queued tasks with satisfied approval checkpoints, save after every site, then stop cleanly."
